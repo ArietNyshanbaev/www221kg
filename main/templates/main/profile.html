@@ -60,7 +60,9 @@
             <li><a href="{%url 'main:team'%}">О нас</a></li>
             <li><a href="#footer">Kонтакты</a></li>
             <li class="active"><a href="">{{user.username}}</a></li>
-            <li><a href="{% url 'main:signout'%}">выйти</a></li>
+            <li>
+            <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
+            </li>
 
           </ul>
         </div><!--/.nav-collapse -->
@@ -159,12 +161,34 @@
       </div>
     </footer>
   </div>
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'js/jquery.easing.min.js'%}"></script> 
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/wow.min.js'%}"></script>
     <script src="{% static 'js/custom.js'%}"></script>
 
+
+    <!-- Exit  model page -->
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{user.first_name}} {{user.last_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите выйти?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
 
 
 <!-- WWW.NET.KG , code for http://221.kg -->
