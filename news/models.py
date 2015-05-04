@@ -27,8 +27,8 @@ class Team(models.Model):
 		return self.name
 
 	class Meta:
-		verbose_name = "команда"
-		verbose_name_plural = "команды"
+		verbose_name = 'команда'
+		verbose_name_plural = 'команды'
 
 class News(models.Model):
 	"""News class is the class which represents news for particular Team"""
@@ -44,9 +44,6 @@ class News(models.Model):
 		return self.title
 
 	class Meta:
-		verbose_name = "новости"
-		verbose_name_plural = "новости"
-
-
+		verbose_name = 'новости'
+		verbose_name_plural = 'новости'
 	
-		
