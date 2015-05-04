@@ -110,7 +110,13 @@
         <h4 class="wow bounceInUp" data-wow-delay="2.0s">
           В случае если их больше чем один победит тот кто раньше всех сделал ставку,спешите может это именно вы выиграете.
         </h4><br>
-        <div data-wow-delay="2.4s" class="alert alert-warning wow bounceInUp" role="alert" >Убедитесь что вы указали свой <strong>номер телефона</strong> правильно,мы свяжемся с вами по этому номеру и вручим вам подарок только если указанный номер принадлежит вам.</div>
+        <div data-wow-delay="2.4s" class="alert alert-warning wow bounceInUp" role="alert" >Убедитесь что вы указали свой <strong>номер телефона</strong> правильно,мы свяжемся с вами по этому номеру и вручим вам подарок только если 
+        {% if user.is_authenticated %}
+        <a href="{%url 'main:profile'%}">указанный</a> 
+        {% else %}
+        указанный
+        {% endif %}
+        вами номер принадлежит вам.</div>
       </div>
       
     </div>
