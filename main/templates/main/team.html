@@ -1,0 +1,220 @@
+{% load staticfiles %}
+<!Doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>221.kg</title>
+
+    <!-- here is the font which we have got from google -->
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css'%}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    
+    <!-- here we have font-awsome link -->
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css'%}">
+  </head>
+
+  <body>
+  <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MVJK9M"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVJK9M');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a  class="navbar-brand" href="{%url 'main:main'%}"> <img id="logo" src="{% static 'images/logo1.png'%}"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#footer">Kонтакты</a></li>
+            <li><a href="{% url 'main:signin' %}">Войти</a></li>
+            <li><a href="{% url 'main:signup' %}">Регистрация</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- Here we have maincontent -->
+    <div class="maincontent">
+      <div class="team">
+    <br>
+    <br>
+    <br>
+<section id="about" class="home-section text-center">
+    <div class="heading-about">
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="wow bounceInDown" data-wow-delay="0.4s">
+          <div class="section-heading">
+          <h2>О Нас</h2>
+          <br>
+          <br>
+          <br>
+          <i class="fa fa-2x fa-angle-down"></i>
+
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+<div class="container">
+
+    <div class="row">
+      <div class="col-lg-2 col-lg-offset-5">
+        <hr class="marginbot-50">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="0.2s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+                        <h5>Anna Hanaceck</h5>
+                        <p class="subtitle">Pixel Crafter</p>
+                        <div class="avatar"><img src="{%static 'images/team/1.jpg'%}" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="0.5s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+                        <h5>Maura Daniels</h5>
+                        <p class="subtitle">Ruby on Rails</p>
+                        <div class="avatar"><img src="{%static 'images/team/2.jpg'%}" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="0.8s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+                        <h5>Дима Похиленко</h5>
+                        <p class="subtitle">PR менеджер</p>
+                        <div class="avatar"><img src="{%static 'images/team/3.jpg'%}" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="1s">
+                <div class="team boxed-grey">
+                    <div class="inner">
+                        <h5>Ариет Нышанбаев</h5>
+                        <p class="subtitle"> CEO</p>
+                        <div class="avatar"><img src="{%static 'images/team/5.jpg'%}" alt="" class="img-responsive img-circle" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+        <br>
+        <hr>
+        <br>
+
+</div>
+</section>
+</div>
+    </div>
+    
+<div class="footer">
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+              </span>Подпишись на наш Twitter<br>
+            </a>
+
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+              </span>Cтраничка Facebook <br>
+            </a>  
+          </div>
+
+          <div class="col-md-6">
+            <span class="fa-stack fa-lg text-left">
+               <i class="fa fa-square-o fa-stack-2x"></i>
+               <i class="fa fa-phone fa-stack-1x"></i>
+            </span> +996556606737<br>
+            <span class="fa-stack fa-lg text-left">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-map-marker fa-stack-1x"></i>
+            </span>Тунгуч,улица Анкара 1/8<br>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Core JavaScript Files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script> 
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+    
+<!-- WWW.NET.KG , code for http://221.kg -->
+<script language="javascript" type="text/javascript">
+ java="1.0";
+ java1=""+"refer="+escape(document.referrer)+"&amp;page="+escape(window.location.href);
+ document.cookie="astratop=1; path=/";
+ java1+="&amp;c="+(document.cookie?"yes":"now");
+</script>
+<script language="javascript1.1" type="text/javascript">
+ java="1.1";
+ java1+="&amp;java="+(navigator.javaEnabled()?"yes":"now");
+</script>
+<script language="javascript1.2" type="text/javascript">
+ java="1.2";
+ java1+="&amp;razresh="+screen.width+'x'+screen.height+"&amp;cvet="+
+ (((navigator.appName.substring(0,3)=="Mic"))?
+ screen.colorDepth:screen.pixelDepth);
+</script>
+<script language="javascript1.3" type="text/javascript">java="1.3"</script>
+<script language="javascript" type="text/javascript">
+ java1+="&amp;jscript="+java+"&amp;rand="+Math.random();
+ document.write("<a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'>"+
+ "<img src='http://www.net.kg/img.php?id=4236&amp;"+java1+
+ "' border='0' alt='WWW.NET.KG' width='88' height='10' /></a>");
+</script>
+<noscript>
+ <a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'><img
+  src="http://www.net.kg/img.php?id=4236" border='0' alt='WWW.NET.KG' width='88'
+  height='10' /></a>
+</noscript>
+<!-- /WWW.NET.KG -->
+
+ </body>
+</html>

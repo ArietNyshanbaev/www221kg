@@ -1,0 +1,261 @@
+{% load staticfiles %}
+{% load mathfilters %}
+<!Doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>221.kg</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css'%}">
+    
+  </head>
+
+  <body>
+  <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MVJK9M"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVJK9M');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a  class="navbar-brand" href="{% url 'bet:index'%}"> <img id="logo" src="{% static 'images/logo1.png'%}"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'bet:make_bet'%}">Сделать ставку</a></li>
+            <li class="active"><a href="{% url 'bet:archive' %}">Резултаты</a></li>
+            <li><a href="{% url 'bet:how_it_works'%}">Как это работает</a></li>
+            <li><a href="{% url 'bet:team'%}">О нас</a></li>
+            <li><a href="#footer">Kонтакты</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'main:profile' %}">{{user.username}}</a></li>
+            <li>
+            <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
+            </li>
+            {% else %}
+            <li><a href="{% url 'main:signin' 'bet'%}">Войти</a></li>
+            <li><a href="{% url 'main:signup' %}">Регистрация</a></li>
+            {% endif %}
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- Here we have maincontent -->
+    <br><br>
+    <div class="maincontent">
+
+<div style="background-color:#ECE9E9;border-radius:100px;" class="container">
+    	<div style="padding:20px;" class="row">
+            <div class="col-md-1"></div>
+    		<div class="col-md-12">
+        <br>
+        {% if user_bet %}
+        <div class="alert alert-success " role="alert"><h5 class="text-center">Ваш результат  {{tour}}-го тура</h5><br>
+        <table class="table table-hover">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>пользователь</th>
+                  <th>правильно из 10</th>
+                  <th>подробнее</th>
+                </tr>
+              </thead>
+              <tbody>
+                    <tr>
+                      <td>{{user_bet.user.username}}</td>
+                      <td>{{user_bet.correct_num }}</td>
+                      <td><a href="{% url 'bet:more_info' user_bet.id%}"style="display:block;color:blue;
+                text-decoration:none;">подробнее</a></td>
+                    </tr>
+              </tbody>
+            </table>
+        </table>
+
+
+        </div>
+        {% endif %}
+        
+        <br><br>
+        <div class="alert alert-info text-center" role="alert">Результаты {{tour}}-го тура</div><br>
+                <table class="table table-hover">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th> пользователь </th>
+                          <th>правильно из 10</th>
+                          <th>подробнее</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for bet in bets_partial %}
+                        {% if bet.correct_num = 10%}
+                            <tr class="success">
+                              <th scope="row">{{ bets_partial.number|mul:25|add:forloop.counter|sub:25}}</th>
+                              <td>{{bet.user.username}}</td>
+                              <td>{{bet.correct_num}}</td>
+                              <td><a href="{% url 'bet:more_info' bet.id%}"style="display:block;color:red;
+    text-decoration:none;">подробнее</a></td>
+                            </tr>
+                        
+                        {% else %}
+                            <tr>
+                              <th scope="row">{{ bets_partial.number|mul:2|add:forloop.counter|sub:2}}</th>
+                              <td>{{bet.user.username}}</td>
+                              <td>{{bet.correct_num }}</td>
+                              <td><a href="{% url 'bet:more_info' bet.id%}"style="display:block;color:red;
+                        
+    text-decoration:none;">подробнее</a></td>
+                            </tr>
+                        {% endif %}
+                            
+                        {% endfor%}
+                      </tbody>
+                    </table>
+                </table>
+
+    		</div>
+        {% if bets_partial.paginator.num_pages > 1%}
+        <div class="text-center">
+          <nav>
+            <ul class="pager">
+              {% if bets_partial.has_previous %}
+                  <li><a href="?page={{ bets_partial.previous_page_number }}">пред</a></li>
+              {% endif %}
+              <li class="active">{{ bets_partial.number }} из {{ bets_partial.paginator.num_pages }}<span class="sr-only">(current)</span></li>
+              {% if bets_partial.has_next %}
+                  <li><a href="?page={{ bets_partial.next_page_number }}">след</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+        {% endif %}
+    	</div>
+    </div>
+
+</div>
+<br><br>
+    
+  <div class="footer">
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+              </span>Подпишись на наш Twitter<br>
+            </a>
+
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+              </span>Cтраничка Facebook <br>
+            </a>  
+          </div>
+
+          <div class="col-md-6">
+            <span class="fa-stack fa-lg text-left">
+               <i class="fa fa-square-o fa-stack-2x"></i>
+               <i class="fa fa-phone fa-stack-1x"></i>
+            </span> +996556606737<br>
+            <span class="fa-stack fa-lg text-left">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-map-marker fa-stack-1x"></i>
+            </span>Тунгуч,улица Анкара 1/8<br>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Core JavaScript Files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script> 
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+
+
+<!-- Exit  model page -->
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{user.first_name}} {{user.last_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите выйти?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- WWW.NET.KG , code for http://221.kg -->
+<script language="javascript" type="text/javascript">
+ java="1.0";
+ java1=""+"refer="+escape(document.referrer)+"&amp;page="+escape(window.location.href);
+ document.cookie="astratop=1; path=/";
+ java1+="&amp;c="+(document.cookie?"yes":"now");
+</script>
+<script language="javascript1.1" type="text/javascript">
+ java="1.1";
+ java1+="&amp;java="+(navigator.javaEnabled()?"yes":"now");
+</script>
+<script language="javascript1.2" type="text/javascript">
+ java="1.2";
+ java1+="&amp;razresh="+screen.width+'x'+screen.height+"&amp;cvet="+
+ (((navigator.appName.substring(0,3)=="Mic"))?
+ screen.colorDepth:screen.pixelDepth);
+</script>
+<script language="javascript1.3" type="text/javascript">java="1.3"</script>
+<script language="javascript" type="text/javascript">
+ java1+="&amp;jscript="+java+"&amp;rand="+Math.random();
+ document.write("<a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'>"+
+ "<img src='http://www.net.kg/img.php?id=4236&amp;"+java1+
+ "' border='0' alt='WWW.NET.KG' width='88' height='10' /></a>");
+</script>
+<noscript>
+ <a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'><img
+  src="http://www.net.kg/img.php?id=4236" border='0' alt='WWW.NET.KG' width='88'
+  height='10' /></a>
+</noscript>
+<!-- /WWW.NET.KG -->
+
+ </body>
+</html>
+    
+    

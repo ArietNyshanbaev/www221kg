@@ -1,0 +1,50 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 0px; 
+}
+
+#footer{
+    background-color: #149200;
+    background-image: url("../images/image02.jpg");
+    padding-top: 300px;
+    padding-bottom: 280px;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#menulist a{
+  font-family: 'Arvo', courier, serif;
+  font-weight: bolder;
+}
+.footer-contacts{
+  font-weight: bold;
+}
+
+.footer{
+    color: white;
+    font-family: 'Arvo', courier, serif;
+    font-size: 20px;
+    font-weight: 100;
+}
+.footer a{
+    color: white;
+    font-family: 'Arvo', courier, serif;
+    font-size: 20px;
+}
+.footer a:hover{
+    opacity: 0.7;
+    color: black;
+    text-decoration: none;
+}
+#logo{
+  margin-top: -10px; 
+}
+#bookborder{
+  border: 2px solid gray;
+  border-radius: 20px;
+}
+
+.footer{
+  a:hover:color:yellow;
+}

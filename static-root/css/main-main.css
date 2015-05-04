@@ -1,0 +1,141 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+html,
+body {
+/*css for full size background image*/
+  background: url('../images/main2.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+  height: 100%;
+  background-color: #060;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+
+}
+#main{
+    padding-bottom: 100px;
+}
+.important{
+    color:#DC5757;
+}
+.ghost{
+  color: #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+.bordered{
+    border: 2px solid white;
+    border-radius: 20px;
+    margin: 5px;
+}
+#main
+ a:hover{
+    color: #DCFA00;
+    text-decoration: none;
+    opacity: .9;
+}
+
+.btn-lg {
+	font-size: 36px;
+}
+
+.slogan {
+	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+
+.slogan h2, .slogan h3 {
+	color: white;
+	font-family: 'Arvo', courier, serif;
+	text-transform: uppercase;
+}
+
+.slogan h2 {
+	font-size: 30px;
+}
+
+.slogan h3 {
+	font-size: 26px;
+	font-weight: bolder;
+}
+
+.slogan p {
+	font-size: 21px;
+	font-weight: 300;
+}
+
+.slogan a {
+	color: #e74c3c;
+}
+
+.slogan a:hover {
+	color: #e74c3c;
+	text-decoration: none;
+	opacity: .8;
+}
+
+.slogan hr {
+	border-top: 1px solid #e74c3d;
+	width: 160px;
+	margin-top: 15px;
+}
+
+/* Responsive Styling */
+
+@media (max-width: 1199px) { 
+
+	.jumbotron h1 {
+		font-size: 56px;
+		margin-bottom: 30px;
+	}
+
+}
+
+@media (max-width: 991px) { 
+
+	.jumbotron h1 {
+		font-size: 44px;
+	}
+
+	.jumbotron p {
+		padding: 0 10px;
+	}
+
+	#get-involved .col-md-4 {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+}
+
+@media (max-width: 767px) { 
+
+	.jumbotron h1 {
+		font-size: 24px;
+	}
+
+	.jumbotron p {
+		font-size: 16px;
+		padding: 0;
+	}
+
+	.btn-lg {
+		font-size: 18px;
+	}
+
+	.homepage p {
+		font-size: 18px;
+	}
+
+	footer img {
+		width: 80%;
+	}
+
+}
+

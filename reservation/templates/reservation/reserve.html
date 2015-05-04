@@ -1,0 +1,598 @@
+{% load staticfiles %}
+<!Doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>221.kg</title>
+
+    <!-- here is the font which we have got from google -->
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/reservation-css.css' %}" rel="stylesheet">
+    <link href="{% static 'css/reservation-schedule.css' %}" rel="stylesheet">
+
+    
+    <!-- here we have font-awsome link -->
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css'%}">
+  </head>
+
+  <body>
+   <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MVJK9M"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVJK9M');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a  class="navbar-brand" href="{% url 'reservation:index'%}"> <img id="logo" src="{% static 'images/logo1.png'%}"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="">Забронировать поле</a></li>
+            <li><a href="#contact">Как это работает</a></li>
+            <li><a href="{% url 'reservation:team'%}">О нас</a></li>
+            <li><a href="#footer">Kонтакты</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'main:profile' %}">{{user.username}}</a></li>
+            <li><a href="{% url 'main:signout' %}">выйти</a></li>
+            {% else %}
+            <li><a href="{% url 'main:signin' 'reservation' %}">Войти</a></li>
+            <li><a href="{% url 'main:signup' %}">Регистрация</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <header class="intro-header" style="background-image: url(../../../media/{{field.image1}})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>{{field.name}}</h1>
+                        <hr class="small">
+                        <span class="subheading">{{field.address}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Here we have maincontent -->
+    <div class="maincontent">
+   
+   <div class="container">  
+        <div class="row">
+
+            {% if success_message%}
+            <br><br>
+            <div class="alert alert-success alert-dismissible text-center" role="alert">
+            <br><br>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong><h4>{{success_message}}</h4></strong> 
+              <br><br>
+            </disv>
+            {% endif %}
+        </div>
+        
+        
+        
+        <hr>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-center page-header">
+                    {{field.name}}
+                </h1>
+                <h2 class="page-header text-center">{{day.day_of_week}} {{day.date}}</h2>
+                <h3 class="text-center">Погода</h3>
+                <div class="container bordered text-center">
+                    {{day.weather}}
+                </div>
+                <br><br>
+            </div>
+
+            <div class="col-lg-12">
+                
+                
+                <table>
+                    <tr id="hours">
+                        {% for hour in hours1 %}
+                            {%if hour < 10 %}
+                                <th class="thhour">0{{hour}}:00</th>
+                                <th class="thhour">0{{hour}}:30</th>
+                            {% else %}
+                                <th class="thhour">{{hour}}:00</th>
+                                <th class="thhour">{{hour}}:30</th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% if day.h9_00 %}
+                            <td class ='busy' bgcolor="#FF000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h9_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h10_00 %}
+                            <td class = 'busy' bgcolor="#FF0000">Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h10_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h11_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h11_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h12_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h12_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h13_00 %}
+                            <td class = 'busy' bgcolor="#FF0000">Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h13_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h14_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h14_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h15_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h15_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h16_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h16_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}          
+                    </tr>
+                    
+                </table>  
+                <hr><br>
+                <table>
+                    <tr id="hours">
+                        {% for hour in hours2 %}
+                            {%if hour > 23 %}
+                                <th class="thhour">00:00</th>
+                                <th class="thhour">00:30</th>
+                            {% else %}
+                                <th class="thhour">{{hour}}:00</th>
+                                <th class="thhour">{{hour}}:30</th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% if day.h17_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h17_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h18_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h18_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h19_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h19_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h20_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h20_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h21_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h21_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h22_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h22_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h23_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}
+                        {% if day.h23_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}     
+                        {% if day.h24_00 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}  
+                        {% if day.h24_30 %}
+                            <td class = 'busy' bgcolor="#FF0000"> Зан.</td>
+                        {% else %}
+                            <td class='free' bgcolor="#00FF00">Своб.</td>
+                        {%endif %}                      
+                    </tr>
+                    
+                </table> 
+                    <br>
+                    <br>
+                    <br>
+            </div>
+            <div class="col-lg-4">
+                
+            </div>
+            <div class=" col-lg-4 " id="bookborder">
+                <form method = 'POST' role="form" action="">
+                    {% csrf_token %}
+                
+                        <h2>Выберите время</h2>
+                        {% if hour_error %}
+                        <b><h5 style="color:red">*{{hour_error}}</h5></b>
+                        {% endif %}
+                    <hr>
+                    {% if not day.h9_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="09-00">09:00-09:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h9_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="9-30">09:30-10:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h10_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="10-00">10:00-10:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h10_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="10-30">10:30-11:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h11_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="11-00">11:00-11:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h11_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="11-30">11:30-12:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h12_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="12-00">12:00-12:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h12_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="12-30">12:30-13:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h13_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="13-00">13:00-13:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h13_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="13-30">13:30-14:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h14_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="14-00">14:00-14:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h14_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="14-30">14:30-15:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h15_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="15-00">15:00-15:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h15_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="15-30">15:30-16:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h16_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="16-00">16:00-16:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h16_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="16-30">16:30-17:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h17_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="17-00">17:00-17:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h17_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="17-30">17:30-18:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h18_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="18-00">18:00-18:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h18_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="18-30">18:30-19:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h19_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="19-00">19:00-19:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h19_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="19-30">19:30-20:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h20_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="20-00">20:00-20:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h20_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="20-30">20:30-21:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h21_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="21-00">21:00-21:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h21_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="21-30">21:30-22:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h22_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="22-00">22:00-22:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h22_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="22-30">22:30-23:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h23_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="23-00">23:00-23:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h23_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="23-30">23:30-00:00</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h24_00 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="24-00">00:00-00:30</label>
+                    </div>
+                    {% endif %}
+                    {% if not day.h24_30 %}
+                    <div class="checkbox">
+                    <label><input type = "checkbox" name="hour" value="24-30">00:30-01:00</label>
+                    </div>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    {% if user.information.can_book%}
+                      <br>
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp; &nbsp; &nbsp;<input type='submit' value='Забронировать'  class="btn btn-success btn-lg" role="button">
+                    {% else %}
+                    <div class="alert alert-warning text-center" role="alert"><br>вы должны <a href="">активировать</a> свой аккаунт чтобы забронировать поле<br><br></div>
+                    {% endif %}
+                    {% else %}
+                      <div class="alert alert-warning text-center" role="alert"><br>вы должны <a href="{%url 'main:signin' 'reservation'%}">войти</a> на сайт чтобы забронировать поле<br><br></div>
+                    {% endif %}
+                    
+                    
+                    <br>
+                    <br>
+                    <br>
+                </form>
+        
+        
+        
+        
+                
+            </div>
+             
+                
+        </div>
+            <br><br><br>
+            <br><br><br>
+    </div>
+    </div><!-- maincontent -->
+    
+    <div class="footer">
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+              </span>Подпишись на наш Twitter<br>
+            </a>
+
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+              </span>Cтраничка Facebook <br>
+            </a>  
+          </div>
+
+          <div class="col-md-6">
+            <span class="fa-stack fa-lg text-left">
+               <i class="fa fa-square-o fa-stack-2x"></i>
+               <i class="fa fa-phone fa-stack-1x"></i>
+            </span> +996556606737<br>
+            <span class="fa-stack fa-lg text-left">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-map-marker fa-stack-1x"></i>
+            </span>Тунгуч,улица Анкара 1/8<br>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Core JavaScript Files -->
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script> 
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+    
+<!-- WWW.NET.KG , code for http://221.kg -->
+<script language="javascript" type="text/javascript">
+ java="1.0";
+ java1=""+"refer="+escape(document.referrer)+"&amp;page="+escape(window.location.href);
+ document.cookie="astratop=1; path=/";
+ java1+="&amp;c="+(document.cookie?"yes":"now");
+</script>
+<script language="javascript1.1" type="text/javascript">
+ java="1.1";
+ java1+="&amp;java="+(navigator.javaEnabled()?"yes":"now");
+</script>
+<script language="javascript1.2" type="text/javascript">
+ java="1.2";
+ java1+="&amp;razresh="+screen.width+'x'+screen.height+"&amp;cvet="+
+ (((navigator.appName.substring(0,3)=="Mic"))?
+ screen.colorDepth:screen.pixelDepth);
+</script>
+<script language="javascript1.3" type="text/javascript">java="1.3"</script>
+<script language="javascript" type="text/javascript">
+ java1+="&amp;jscript="+java+"&amp;rand="+Math.random();
+ document.write("<a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'>"+
+ "<img src='http://www.net.kg/img.php?id=4236&amp;"+java1+
+ "' border='0' alt='WWW.NET.KG' width='88' height='10' /></a>");
+</script>
+<noscript>
+ <a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'><img
+  src="http://www.net.kg/img.php?id=4236" border='0' alt='WWW.NET.KG' width='88'
+  height='10' /></a>
+</noscript>
+<!-- /WWW.NET.KG -->
+
+ </body>
+</html>
+    
+    
