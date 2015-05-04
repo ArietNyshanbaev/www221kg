@@ -13,7 +13,7 @@ class Tour(models.Model):
     tour_note3 = models.CharField('примечание3', max_length=100,blank=True,null=True)
     
     def __unicode__(self):
-        return 'номер тура' + str(self.tour_number)
+        return self.tour_number
 
     class Meta:
         verbose_name = 'тур'
@@ -26,7 +26,7 @@ class Match(models.Model):
     goal_first = models.IntegerField('голы первой команды', default = 0)
     goal_second = models.IntegerField('голы второй команды', default = 0)
     def __unicode__(self):
-        return self.first_team + " vs " + self.second_team + " " + str(self.tour)
+        return self.first_team + " vs " + self.second_team + " " + str(self.tour).decode('utf8')
 
     class Meta:
         verbose_name = 'матч'

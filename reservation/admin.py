@@ -2,7 +2,11 @@ from django.contrib import admin
 from .models import BookRequest,Day,Field
 # Register your models here.
 
-admin.site.register(Field)
+
+class FieldAdmin(admin.ModelAdmin):
+	list_display = ('name', 'address', 'price_usual', 'price_low')
+
+admin.site.register(Field,FieldAdmin)
 
 class BookRequestAdmin(admin.ModelAdmin):
 	list_display = ('user', 'field', 'time', 'date_time')
