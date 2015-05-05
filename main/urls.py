@@ -13,7 +13,5 @@ urlpatterns = patterns('',
     url(r'^profile/modify_profile/$', 'main.views.modify_profile', name='modify_profile'),
     url(r'^profile/change_password/$', 'main.views.change_password', name='change_password'),
     url(r'^profile/$', 'main.views.profile', name='profile'),
-    
-
 )
 

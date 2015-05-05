@@ -219,4 +219,6 @@ def change_password(request):
 	else:
 		return render_to_response('main/change_password.html',args)
 
+	
+
 
