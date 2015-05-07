@@ -202,4 +202,3 @@ def reserve(request,field_id,day_id):
 		args['day'] = get_object_or_404(Day, pk = day_id)
 
 		return render_to_response('reservation/reserve.html',args,context_instance = RequestContext(request))
-    

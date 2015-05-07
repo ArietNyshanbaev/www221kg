@@ -1,0 +1,494 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pro 221</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/pro_owner.css'%}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'pro_owner:home'%}">221.KG</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">выйти</span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <br><br><br>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-md-12">
+                <br><br><br>
+                <h1 class="page-header">{{field.name}}
+                    <small>{{user.first_name}} {{user.last_name}}</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+            <div class="row text-center">
+
+                <div class="col-md-10">
+                    <img class="img-responsive" src="../../../media/{{field.image1}}" alt="{{field.name}}">
+                </div>
+            </div>
+            <hr>
+
+            <form method = 'POST' role="form" action="">
+                {% csrf_token %}
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    <h3>{{day.day_of_week}} {{day.date}}</h3>
+                    <hr>
+                    <br>
+                    {% if day.h9_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>09:00-09:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="09-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>09:00-09:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="09-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h9_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>09:30-10:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="09-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>09:30-10:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="09-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h10_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>10:00-10:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="10-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>10:00-10:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="10-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h10_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>10:30-11:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="10-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>10:30-11:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="10-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h11_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>11:00-11:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="11-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>11:00-11:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="11-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h11_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>11:30-12:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="11-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>11:30-12:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="11-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h12_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>12:00-12:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="12-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>12:00-12:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="12-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h12_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>12:30-13:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="12-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>12:30-13:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="12-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h13_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>13:00-13:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="13-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>13:00-13:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="13-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h13_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>13:30-14:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="13-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>13:30-14:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="13-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h14_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>14:00-14:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="14-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>14:00-14:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="14-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h14_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>14:30-15:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="14-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>14:30-15:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="14-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h15_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>15:00-15:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="15-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>15:00-15:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="15-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h15_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>15:30-16:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="15-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>15:30-16:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="15-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h16_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>16:00-16:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="16-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>16:00-16:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="16-00"></span></h4>
+                        </div>
+                    {% endif %}
+                    {% if day.h16_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>16:30-17:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="16-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>16:30-17:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="16-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h17_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>17:00-17:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="17-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>17:00-17:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="17-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h17_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>17:30-18:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="17-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>17:30-18:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="17-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h18_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>18:00-18:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="18-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>18:00-18:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="18-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h18_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>18:30-19:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="18-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>18:30-19:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="18-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h19_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>19:00-19:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="19-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>19:00-19:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="19-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h19_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>19:30-20:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="19-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>19:30-20:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="19-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h20_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>20:00-20:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="20-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>20:00-20:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="20-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h20_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>20:30-21:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="20-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>20:30-21:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="20-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h21_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>21:00-21:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="21-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>21:00-21:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="21-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h21_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>21:30-22:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="21-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>21:30-22:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="21-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h22_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>22:00-22:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="22-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>22:00-22:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="22-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h22_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>22:30-23:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="22-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>22:30-23:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="22-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h23_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>23:00-23:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="23-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>23:00-23:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="23-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h23_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>23:30-00:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="23-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>23:30-00:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="23-30"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h24_00 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>00:00-00:30 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="24-00"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>00:00-00:30 <span style="padding-left:150px"><input type="checkbox" name="hour" value="24-00"></span></h4>
+                        </div>
+                    {% endif %}
+
+                    {% if day.h24_30 %}
+                        <div class="alert alert-danger" role="alert">
+                            <h4>00:30-01:00 <span style="padding-left:150px"><input type="checkbox" checked="" name="hour" value="24-30"></span></h4>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            <h4>00:30-01:00 <span style="padding-left:150px"><input type="checkbox" name="hour" value="24-30"></span></h4>
+                        </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                    <div class="span7 text-center">
+                      <input id = 'signin-btn' type='submit' value='Внести изменения'  class="btn btn-primary btn-lg btn-block " role="button">
+                      <br>
+                      <a href="{% url 'pro_owner:info_day' field.pk day.pk %}"><input id='signup-btn' value='Отмена'  class="btn btn-default btn-block btn-lg " ></a>
+                    </div>
+                </div>
+
+                
+
+            </form>
+            
+
+        <!-- Footer -->
+        <footer class='text-center'>
+            <div class="row">
+                <div class="col-lg-12">
+                <br><br><br>
+                    <p>Copyright &copy; 221.kg 2015</p>
+                </div>
+                <div>
+                    <!-- WWW.NET.KG , code for http://221.kg -->
+                    <script language="javascript" type="text/javascript">
+                     java="1.0";
+                     java1=""+"refer="+escape(document.referrer)+"&amp;page="+escape(window.location.href);
+                     document.cookie="astratop=1; path=/";
+                     java1+="&amp;c="+(document.cookie?"yes":"now");
+                    </script>
+                    <script language="javascript1.1" type="text/javascript">
+                     java="1.1";
+                     java1+="&amp;java="+(navigator.javaEnabled()?"yes":"now");
+                    </script>
+                    <script language="javascript1.2" type="text/javascript">
+                     java="1.2";
+                     java1+="&amp;razresh="+screen.width+'x'+screen.height+"&amp;cvet="+
+                     (((navigator.appName.substring(0,3)=="Mic"))?
+                     screen.colorDepth:screen.pixelDepth);
+                    </script>
+                    <script language="javascript1.3" type="text/javascript">java="1.3"</script>
+                    <script language="javascript" type="text/javascript">
+                     java1+="&amp;jscript="+java+"&amp;rand="+Math.random();
+                     document.write("<a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'>"+
+                     "<img src='http://www.net.kg/img.php?id=4236&amp;"+java1+
+                     "' border='0' alt='WWW.NET.KG' width='88' height='10' /></a>");
+                    </script>
+                    <noscript>
+                     <a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'><img
+                      src="http://www.net.kg/img.php?id=4236" border='0' alt='WWW.NET.KG' width='88'
+                      height='10' /></a>
+                    </noscript>
+                    <!-- /WWW.NET.KG -->
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+
+
+    <!-- Exit  model page -->
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{user.first_name}} {{user.last_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <h4>вы уверены что хотите выйти?</h4>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <a href="{% url 'main:signout'%}"><button type="button" class="btn btn-primary">Выйти</button></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

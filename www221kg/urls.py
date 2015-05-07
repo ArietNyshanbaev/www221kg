@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^reservation/',include('reservation.urls',namespace='reservation')),
     url(r'^news/',include('news.urls',namespace='news')),
     url(r'^bet/',include('bet.urls', namespace='bet')),
+    url(r'^pro/',include('pro_owner.urls', namespace='pro_owner')),
 	url(r'^',include('main.urls',namespace='main')),
     url(r'^',include('password_reset.urls')),
     

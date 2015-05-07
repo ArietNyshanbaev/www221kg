@@ -21,8 +21,8 @@ class Tour(models.Model):
 
 class Match(models.Model):
     tour = models.ForeignKey(Tour, verbose_name='тур')
-    first_team = models.CharField('первая команда', max_length = 60)
-    second_team = models.CharField('вторая команда', max_length = 60)
+    first_team = models.CharField('первая команда', max_length = 62)
+    second_team = models.CharField('вторая команда', max_length = 62)
     goal_first = models.IntegerField('голы первой команды', default = 0)
     goal_second = models.IntegerField('голы второй команды', default = 0)
     def __unicode__(self):

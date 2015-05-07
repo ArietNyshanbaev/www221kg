@@ -76,16 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'my_django_221',
         'USER': 'root',
-        'PASSWORD': 'mysql12',
-        'OPTIONS': {
-            'sql_mode': 'TRADITIONAL',
-            'charset': 'utf8',
-            'init_command': 'SET '
-                'storage_engine=INNODB,'
-                'character_set_connection=utf8,'
-                'collation_connection=utf8_bin,'
-                'SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED',
-        }
+        'OPTIONS': { "init_command": "SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED"} 
     }
 }
 
@@ -117,6 +108,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static-root')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
