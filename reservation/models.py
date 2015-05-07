@@ -9,6 +9,7 @@ class Field(models.Model):
     image4 = models.ImageField('фото4', upload_to='media', null=True, blank=True)
     image5 = models.ImageField('фото5', upload_to='media', null=True, blank=True)
     map_image = models.ImageField('карта', upload_to='media')
+    owner = models.ForeignKey(User, verbose_name='владелец')
     name = models.CharField('название', max_length=200)
     width = models.IntegerField('ширина')
     height = models.IntegerField('длина')
