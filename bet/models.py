@@ -49,7 +49,7 @@ class Bet(models.Model):
     match10 = models.IntegerField('матч10')
     
     def __unicode__(self):
-        return str(self.user) +" "+ str(self.tour_number) + "-тур"
+        return str(self.user) +" "+ str(self.tour_number)
 
     class Meta:
         verbose_name = 'ставка'
