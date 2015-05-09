@@ -20,8 +20,8 @@ class Field(models.Model):
     changing_room = models.BooleanField('раздевалка', default=False)
     wc = models.BooleanField('туалет', default=False)
     note1 = models.TextField('примечания1', blank=True, null=True)
-    note2 = models.TextField('примечания2', blank=True, null=True)
-    note3 = models.TextField('примечания3', blank=True, null=True)
+    note2 = models.TextField('координаты_x', blank=True, null=True)
+    note3 = models.TextField('координаты_y', blank=True, null=True)
 
     def __unicode__(self):
         return self.name

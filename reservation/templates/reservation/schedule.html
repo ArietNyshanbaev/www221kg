@@ -141,10 +141,6 @@
                     <hr>
                     <h3 class="text-center">{{field.note1}}</h3>
                 {% endif %}
-                {% if field.note2%}
-                    <hr>
-                    <h3 class="text-center">{{field.note2}}</h3>
-                {% endif %}
             </div>    
         </div>
     </div>
@@ -308,11 +304,8 @@
         <h3 class="text-center">Карта</h3>
         <div class="row">
             <div class="col-md-12">
-                <div id="map-field">
+                <div id="map-field"></div>
             </div>
-            
-            </div>
-            <h4 class="text-center">{{field.note3}}</h4>
         </div>
         <br><br><br>
 
@@ -360,7 +353,7 @@
   function initialize() {
     var mapCanvas = document.getElementById('map-field');
     var mapOptions = {
-      center: new google.maps.LatLng(42.877987, 74.684102),
+      center: new google.maps.LatLng({{field.note2}}, {{field.note3}}),
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
