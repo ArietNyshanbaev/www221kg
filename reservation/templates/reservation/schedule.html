@@ -26,7 +26,12 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="{% static 'css/reservation-css.css' %}" rel="stylesheet">
     
-    
+    <style>
+      #map-field {
+        width: 1100px;
+        height: 400px;
+      }
+    </style>
     
     <!-- here we have font-awsome link -->
     <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css'%}">
@@ -308,8 +313,12 @@
         </div>
         <br><br><br>
         <h3 class="text-center">Карта</h3>
-        <div class="container">
-            <img height="400" width="1100" src="../../media/{{field.map_image}}" alt="map">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="map-field">
+            </div>
+            
+            </div>
             <h4 class="text-center">{{field.note3}}</h4>
         </div>
         <br><br><br>
@@ -350,6 +359,32 @@
       </div>
     </footer>
   </div>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+  function initialize() {
+    var mapCanvas = document.getElementById('map-field');
+    var mapOptions = {
+      center: new google.maps.LatLng(42.877987, 74.684102),
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var marker = new google.maps.Marker({
+      position: mapOptions.center,
+      map: map,
+      icon: "{% static 'images/markerSmall.png' %}"
+    });
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+
+
 
   <!-- Core JavaScript Files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
